@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "19f25af1-8e9d-4a4c-ace1-12a13e3ec7d2",
+		"name": "OdisAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31356288"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"pm.environment.set(\"jwtToken\", jsonData.token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/token",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Address by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/addresses/{addressId}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"addresses",
+						"{addressId}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create or Update Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"street\": \"123 Main St\",\r\n  \"city\": \"Sample City\",\r\n  \"zipCode\": \"12345\",\r\n  \"state\": \"Sample State\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/addresses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Person by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/persons/{personId}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"persons",
+						"{personId}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create or Update Person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"surname\": \"Doe\",\r\n  \"ageRange\": \"30-40\",\r\n  \"cityOfBirth\": \"Sample City\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/persons",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mapping Values by Type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/mappings/{mappingType}/values",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"mappings",
+						"{mappingType}",
+						"values"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
